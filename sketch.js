@@ -19,14 +19,14 @@ var sketch = function(p) {
 		p.noStroke()
 		p.background(50);
 
-		cells.map(function(cell) {
+		cells.forEach(function(cell) {
 			cell.update();
 			cell.show();
 		});
 
 		waves.filter(function(wave) {
 			return wave.alive;
-		}).map(function(wave) {
+		}).forEach(function(wave) {
 			wave.update();
 			wave.show();
 		});
@@ -42,7 +42,7 @@ var sketch = function(p) {
 
 		cells.filter(function(cell) {
 			return cell.ifInside(p.mouseX, p.mouseY);
-		}).map(function(cell) {
+		}).forEach(function(cell) {
 			mitosisOccurred = true;
 			cells.push(cell.mitosis());
 		});
