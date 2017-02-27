@@ -1,8 +1,9 @@
 var cells = [];
 var waves = [];
 
-var NUMBER_OF_CELLS = 30;
+var NUMBER_OF_CELLS = 15;
 var WINDOW_MARGIN = 20;
+var WAVE_FORCE_MAGNITUDE = 0.5;
 
 var sketch = function(p) {
 
@@ -19,7 +20,14 @@ var sketch = function(p) {
 		p.noStroke()
 		p.background(50);
 
-		cells.forEach(function(cell) {
+		cells.filter(function(cell) {
+			return cell.active;
+		}).forEach(function(cell) {
+			waves.filter(function(wave) {
+				return wave.alive && wave.contains(cell);
+			}).forEach(function(wave) {
+				cell.applyForce(cell.pos.copy().sub(wave.pos).setMag(WAVE_FORCE_MAGNITUDE));
+			});
 			cell.update();
 			cell.show();
 		});
@@ -31,7 +39,7 @@ var sketch = function(p) {
 			wave.show();
 		});
 
-		this.shouldDo(0.003, function() {
+		shouldDo(0.003, function() {
 			cells.push(new Cell(p));
 		});
 	}
@@ -53,10 +61,11 @@ var sketch = function(p) {
 
 	}
 
-	this.shouldDo = function(probability, callback) {
-		if (p.random() < probability) {
-			callback();
-		}
+}
+
+function shouldDo(probability, callback) {
+	if (Math.random() < probability) {
+		callback();
 	}
 }
 

@@ -1,6 +1,6 @@
 function Wave(p, pos) {
 
-  var MAX_WAVE_RADIUS = 350;
+  var MAX_WAVE_RADIUS = 650;
   var START_RADIUS = 10;
   var WAVE_SPEED = 2;
 
@@ -16,6 +16,11 @@ function Wave(p, pos) {
     } else {
       this.alive = false;
     }
+  }
+
+  this.contains = function(cell) {
+    var dist = this.p5.dist(this.pos.x, this.pos.y, cell.pos.x, cell.pos.y);
+    return dist < this.radius / 2 - cell.radius / 2;
   }
 
   this.show = function() {
