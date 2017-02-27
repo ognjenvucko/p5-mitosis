@@ -24,9 +24,7 @@ function Wave(p, pos) {
   }
 
   this.show = function() {
-    this.p5.noFill();
-    this.p5.strokeWeight(2);
-    this.p5.stroke(180, 100);
+    this.p5.fill(220, 10);
     this.p5.ellipse(this.pos.x, this.pos.y, this.radius, this.radius);
   }
 }
