@@ -11,7 +11,11 @@ function Cell(p5, pos, radius, color, velocity) {
   this.active = true;
 
   this.update = function() {
+    var randomVect = this.p5.createVector(this.p5.random(-1, 1), this.p5.random(-1, 1));
+    randomVect.setMag(1);
+    this.vel.add(randomVect);
     this.pos.add(this.vel.add(this.force));
+    this.vel.sub(randomVect);
     if (this.pos.x < 0 + this.radius) {
       this.pos.x = this.radius;
       this.vel.x = -1 * this.vel.x;
@@ -29,7 +33,7 @@ function Cell(p5, pos, radius, color, velocity) {
       this.vel.y = -1 * this.vel.y;
     }
     this.force.mult(0);
-    this.vel.mult(0.998);
+    // this.vel.mult(0.998);
   }
 
   this.applyForce = function(force) {
