@@ -53,7 +53,7 @@ var sketch = function(p) {
 		var clickedInsideCell = false;
 
 		cells.filter(function(cell) {
-			return cell.contains(p.createVector(p.mouseX, p.mouseY));
+			return cell.active && cell.contains(p.createVector(p.mouseX, p.mouseY));
 		}).forEach(function(cell) {
 			clickedInsideCell = true;
 			// split to two cells
