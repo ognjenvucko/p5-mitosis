@@ -10,7 +10,7 @@ function Cell(p5, pos, radius, color, velocity) {
 
   this.active = true;
 
-  this.update = function() {
+  this.update = () => {
     var randomVect = this.p5.createVector(this.p5.random(-1, 1), this.p5.random(-1, 1));
     randomVect.setMag(1);
     this.vel.add(randomVect);
@@ -40,7 +40,7 @@ function Cell(p5, pos, radius, color, velocity) {
     this.force.add(force);
   }
 
-  this.show = function() {
+  this.show = () => {
     this.p5.fill(this.color);
     this.p5.ellipse(this.pos.x, this.pos.y, this.radius * 2, this.radius * 2);
   }
@@ -64,7 +64,7 @@ function Cell(p5, pos, radius, color, velocity) {
     this.radius = this.p5.sqrt(this.radius * this.radius + other.radius * other.radius);
   }
 
-  this.mitosis = function() {
+  this.mitosis = () => {
 
     if (!this.active) return [];
     this.active = false;

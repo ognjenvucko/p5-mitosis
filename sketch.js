@@ -7,7 +7,7 @@ var NUMBER_OF_CELLS = 15;
 
 var sketch = function(p) {
 
-	p.setup = function() {
+	p.setup = () => {
 		p.createCanvas(p.windowWidth - WINDOW_MARGIN, p.windowHeight - WINDOW_MARGIN);
 		for (var i = 0; i < NUMBER_OF_CELLS; i++) {
 			var cellColor = p.color(p.random(150, 240), p.random(150, 240), p.random(150, 240), 200);
@@ -15,7 +15,7 @@ var sketch = function(p) {
 		}
 	}
 
-	p.draw = function() {
+	p.draw = () => {
 		p.noStroke();
 		p.background(p.color(50, 52, 60));
 
@@ -52,7 +52,7 @@ var sketch = function(p) {
 
 	}
 
-	p.mouseClicked = function() {
+	p.mouseClicked = () => {
 
 		var clickedInsideCell = false;
 
