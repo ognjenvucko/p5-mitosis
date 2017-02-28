@@ -3,16 +3,20 @@ var waves = [];
 
 var WINDOW_MARGIN = 20;
 var WAVE_FORCE_MAGNITUDE = 0.5;
+var NUMBER_OF_CELLS = 15;
 
 var sketch = function(p) {
 
 	p.setup = function() {
 		p.createCanvas(p.windowWidth - WINDOW_MARGIN, p.windowHeight - WINDOW_MARGIN);
-		cells.push(new Cell(p, p.createVector(p.width / 2, p.height / 2), 100, p.color(255, 200)));
+		for (var i = 0; i < NUMBER_OF_CELLS; i++) {
+			var cellColor = p.color(p.random(150, 240), p.random(150, 240), p.random(150, 240), 200);
+			cells.push(new Cell(p, p.createVector(p.random(p.width), p.random(p.height)), 50, cellColor));
+		}
 	}
 
 	p.draw = function() {
-		p.noStroke()
+		p.noStroke();
 		p.background(p.color(50, 52, 60));
 
 		cells.filter(function(cell) {
